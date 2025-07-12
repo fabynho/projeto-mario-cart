@@ -56,6 +56,26 @@ async function selectRandomCharacters() {
 
 }
 
+// Função para sortear o tipo de ataque no confronto
+async function getRandomAttack() {
+
+    const random = Math.random();
+
+    if(random < 0.5){
+        return {
+            tipo: "CASCO",
+            pontos: 1,
+            emoji: "🐢"
+        };
+    }else{
+        return {
+            tipo: "BOMBA",
+            pontos: 2,
+            emoji: "💣"
+        };
+    }
+}
+
 
 async function rollDice() {
 
@@ -127,14 +147,18 @@ async function playRaceEngine(character1, character2) {
             await logRollResult(character1.NOME, "PODER", diceResult1, character1.PODER)
             await logRollResult(character2.NOME, "PODER", diceResult2, character2.PODER)
 
+            const attack = await getRandomAttack();
+
             if(powerResult1 > powerResult2 && character2.PONTOS > 0){
-                console.log(`${character1.NOME} venceu o confronto! ${character2.NOME} perdeu um ponto! 🐢`);
-                character2.PONTOS--;
+                let pointsToLose = Math.min(attack.pontos, character2.PONTOS)
+                console.log(`${character1.NOME} venceu o confronto! ${character2.NOME} foi atingido por um ${attack.tipo} ${attack.emoji} e perdeu ${pointsToLose} ponto(s)!`);
+                character2.PONTOS -= pointsToLose;
             }
 
             if(powerResult2 > powerResult1 && character1.PONTOS > 0){
-                console.log(`${character2.NOME} venceu o confronto! ${character1.NOME} perdeu um ponto! 🐢`);
-                character1.PONTOS--;
+                let pointsToLose = Math.min(attack.pontos, character1.PONTOS)
+                console.log(`${character2.NOME} venceu o confronto! ${character1.NOME} foi atingido por um ${attack.tipo} ${attack.emoji} e perdeu ${pointsToLose} ponto(s)!`);
+                character1.PONTOS -= pointsToLose;
             }
 
                 
@@ -147,6 +171,9 @@ async function playRaceEngine(character1, character2) {
         }else if(totalTestSkill2 > totalTestSkill1){
             console.log(`${character2.NOME} marcou um ponto!`)
             character2.PONTOS++;
+        }else if(block =! "CONFRONTO" && totalTestSkill1 === totalTestSkill2){
+            console.log("Empate! Ninguem pontuou!");
+
         }
 
 
