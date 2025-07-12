@@ -149,16 +149,42 @@ async function playRaceEngine(character1, character2) {
 
             const attack = await getRandomAttack();
 
-            if(powerResult1 > powerResult2 && character2.PONTOS > 0){
-                let pointsToLose = Math.min(attack.pontos, character2.PONTOS)
-                console.log(`${character1.NOME} venceu o confronto! ${character2.NOME} foi atingido por um ${attack.tipo} ${attack.emoji} e perdeu ${pointsToLose} ponto(s)!`);
-                character2.PONTOS -= pointsToLose;
+            if(powerResult1 > powerResult2){
+                if(character2.PONTOS > 0){
+                    let pointsToLose = Math.min(attack.pontos, character2.PONTOS)
+                    console.log(`${character1.NOME} venceu o confronto! ${character2.NOME} foi atingido por um ${attack.tipo} ${attack.emoji} e perdeu ${pointsToLose} ponto(s)!`);
+                    character2.PONTOS -= pointsToLose;
+                }else{
+                    console.log(`${character1.NOME} venceu o confronto!`);
+                }
+                
+
+                //chance aleatoria de ganhar turbo
+                if(Math.random() < 0.5){
+                    console.log(`${character1.NOME} ativou o TURBO! 🔥 Ganhou 1 ponto extra!`);
+                    character1.PONTOS++;
+                }else{
+                    console.log("Nenhum ponto extra!")
+                }
             }
 
-            if(powerResult2 > powerResult1 && character1.PONTOS > 0){
-                let pointsToLose = Math.min(attack.pontos, character1.PONTOS)
-                console.log(`${character2.NOME} venceu o confronto! ${character1.NOME} foi atingido por um ${attack.tipo} ${attack.emoji} e perdeu ${pointsToLose} ponto(s)!`);
-                character1.PONTOS -= pointsToLose;
+            if(powerResult2 > powerResult1){
+                if(character1.PONTOS > 0){
+                    let pointsToLose = Math.min(attack.pontos, character1.PONTOS)
+                    console.log(`${character2.NOME} venceu o confronto! ${character1.NOME} foi atingido por um ${attack.tipo} ${attack.emoji} e perdeu ${pointsToLose} ponto(s)!`);
+                    character1.PONTOS -= pointsToLose;
+                }else{
+                    console.log(`${character2.NOME} venceu o confronto!`);
+                }
+                
+
+                //chance aleatoria de ganhar turbo
+                if(Math.random() < 0.5){
+                    console.log(`${character2.NOME} ativou o TURBO! 🔥 Ganhou 1 ponto extra!`);
+                    character2.PONTOS++;
+                }else{
+                    console.log("Nenhum ponto extra!")
+                }
             }
 
                 
@@ -194,7 +220,7 @@ async function declareWinner(character1, character2) {
     } else if(character2.PONTOS > character1.PONTOS){
         console.log(`\n${character2.NOME} Venceu a corrida! Parabéns! 🏆`)
     }else{
-        console.log("A corrida termnou em empate");
+        console.log("A corrida terminou em empate");
     }
 }
 
