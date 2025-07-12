@@ -83,6 +83,9 @@
 <input type="checkbox" id="jogadores-item" />
 <label for="jogadores-item">O Computador deve receber dois personagens para disputar a corrida em um objeto cada</label>
 
+<input type="checkbox" id="selecao-aleatoria" checked />
+<label for="selecao-aleatoria">Os dois personagens agora são selecionados aleatoriamente entre seis disponíveis</label>
+
 <b>Pistas:</b>
 
 <ul>
@@ -91,7 +94,9 @@
     <ul>
       <li><input type="checkbox" id="pistas-2-1-item" /> <label for="pistas-2-1-item">Caso o bloco da pista seja uma RETA, o jogador deve jogar um dado de 6 lados e somar o atributo VELOCIDADE, quem vencer ganha um ponto</label></li>
       <li><input type="checkbox" id="pistas-2-2-item" /> <label for="pistas-2-2-item">Caso o bloco da pista seja uma CURVA, o jogador deve jogar um dado de 6 lados e somar o atributo MANOBRABILIDADE, quem vencer ganha um ponto</label></li>
-      <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Caso o bloco da pista seja um CONFRONTO, o jogador deve jogar um dado de 6 lados e somar o atributo PODER, quem perder, perde um ponto</label></li>
+      <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Caso o bloco da pista seja um CONFRONTO, o jogador deve jogar um dado de 6 lados e somar o atributo PODER, quem perder, perde ponto(s)</label></li>
+      <li><input type="checkbox" id="ataque-randomico" checked /> <label for="ataque-randomico">Durante o confronto, um tipo de ataque aleatório (CASCO 🐢 ou  BOMBA 💣) define quantos pontos o oponente perde</label></li>
+      <li><input type="checkbox" id="turbo-randomico" checked /> <label for="turbo-randomico">O vencedor do confronto tem chance aleatória de ganhar 1 ponto extra com um TURBO 🔥</label></li>
       <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Nenhum jogador pode ter pontuação negativa (valores abaixo de 0)</label></li>
     </ul>
   </li>
