@@ -1,17 +1,59 @@
-const player1 = {
-    NOME: "Mario",
-    VELOCIDADE: 4,
-    MANOBRABILIDADE: 3,
-    PODER: 3,
-    PONTOS: 0,
-}
+const characters = [
+    {
+        NOME: "Mario",
+        VELOCIDADE: 4,
+        MANOBRABILIDADE: 3,
+        PODER: 3,
+        PONTOS: 0,
+    },
+    {
+        NOME: "Luigi",
+        VELOCIDADE: 3,
+        MANOBRABILIDADE: 4,
+        PODER: 4,
+        PONTOS: 0,
+    },
+    {
+        NOME: "Peach",
+        VELOCIDADE: 3,
+        MANOBRABILIDADE: 4,
+        PODER: 2,
+        PONTOS: 0,
+    },
+    {
+        NOME: "Yoshi",
+        VELOCIDADE: 2,
+        MANOBRABILIDADE: 4,
+        PODER: 3,
+        PONTOS: 0,
+    },
+    {
+        NOME: "Bowser",
+        VELOCIDADE: 5,
+        MANOBRABILIDADE: 2,
+        PODER: 5,
+        PONTOS: 0,
+    },
+    {
+        NOME: "Donkey Kong",
+        VELOCIDADE: 2,
+        MANOBRABILIDADE: 2,
+        PODER: 5,
+        PONTOS: 0,
+    }
 
-const player2 = {
-    NOME: "Luigi",
-    VELOCIDADE: 3,
-    MANOBRABILIDADE: 4,
-    PODER: 4,
-    PONTOS: 0,
+];
+
+//selecionar 2 personagens aleatorios
+async function selectRandomCharacters() {
+
+    const shufffled = [...characters].sort(() => 0.5 - Math.random());
+    const selected = shufffled.slice(0, 2);
+
+    
+
+    return selected;
+
 }
 
 
@@ -130,6 +172,11 @@ async function declareWinner(character1, character2) {
 }
 
 (async function Main() {
+    console.log("🏁 MARIO KART - SELEÇÃO ALEATÓRIA DE PERSONAGENS!\n");
+
+    // Selecionar 2 personagens aleatórios
+    const [player1, player2] = await selectRandomCharacters();
+
     console.log(
         `🏁 Corrida entre ${player1.NOME} e ${player2.NOME} começando ...\n`
     )
